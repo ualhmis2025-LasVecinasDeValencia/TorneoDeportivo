@@ -68,7 +68,7 @@ class Torneo {
 	public void setEquipos(List<Equipo> equipos) {
 		this.equipos = equipos;
 	}
-
+		
 	public String getTipo() {
 		return tipo;
 	}
@@ -76,6 +76,18 @@ class Torneo {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	
+	
+	@Override
+	public String toString() {
+	    return "Torneo [nombre=" + nombre +
+	           ", deporte=" + deporte +
+	           ", categoria=" + categoria +
+	           ", modalidad=" + modalidad +
+	           ", tipo=" + tipo +
+	           ", equipos=" + equipos + "]";
+	}
+
     
     
 }
