@@ -12,9 +12,9 @@ class Jugador extends Persona {
 
     private String determinarCategoria(int edad) {
         if (edad < 12) return "Infantil";
-        else if (edad < 15) return "Cadete";
-        else if (edad < 18) return "Juvenil";
-        else if (edad < 21) return "Junior";
+        else if (edad <= 15) return "Cadete";
+        else if (edad <= 20) return "Juvenil";
+        else if (edad <= 23) return "Junior";
         else return "Absoluta";
     }
 
