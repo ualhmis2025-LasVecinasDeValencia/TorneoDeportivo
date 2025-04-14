@@ -1,6 +1,9 @@
 package org.ualhmis.torneos;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
 import java.time.LocalDate;
 
 // Creación de jugadores y cálculo automático de categoría
@@ -41,4 +44,120 @@ class EquipoTest {
         assertNotNull(equipo.getSegundoEntrenador());
         assertEquals("Ana", equipo.getSegundoEntrenador().getNombre());
     }
+    
+    
+
+    @ParameterizedTest(name = "{index} => nombre={0}, categoria={1}, modalidad={2}, nuloEntrenador={3}")
+    @CsvSource({
+        " , Infantil, Futbol, true",       // nombre vacío
+        "'   ', Infantil, Futbol, true",   // nombre con espacios
+        "Equipo A, , Futbol, true",        // categoría nula
+        "Equipo A, Infantil, , true",      // modalidad nula
+        "Equipo A, Infantil, Futbol, true"  // entrenador nulo
+    })
+    
+    
+    void testConstructorConDatosInvalidos(String nombre, String categoria, String modalidad, boolean nuloEntrenador) {
+        Entrenador entrenador = nuloEntrenador ? null : new Entrenador(modalidad, modalidad, null);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Equipo(nombre, categoria, modalidad, entrenador);
+        });
+    }
+    
+    
+    
+    Entrenador entrenadorPrueba = new Entrenador("Luis", "hombre", LocalDate.of(1990, 04, 05)); 
+    Equipo equipoPrueba = new Equipo("GallardoMartinez", "Juvenil", "Futbol", entrenadorPrueba);
+
+    
+    
+  @Test
+    
+    void getNombre() {
+    	
+    	assertEquals("GallardoMartinez", equipoPrueba.getNombre()); 	
+    }
+
+ @Test
+  
+  void getCategoria() {
+  	
+  	assertEquals("Juvenil", equipoPrueba.getCategoria()); 
+  }
+  
+ @Test
+ 
+ void getModalidad() {
+ 	
+ 	assertEquals("Futbol", equipoPrueba.getModalidad()); 
+ }
+ 
+ @Test
+ 
+ void getEntrenador() {
+ 	
+ Entrenador entrenadorPruebaAssert = entrenadorPrueba;   
+ 	
+ 
+ assertEquals(entrenadorPrueba, equipoPrueba.getEntrenador()); 
+ 	
+ }
+ 
+ 
+ @Test
+ void setNombre() {
+	 
+	 equipoPrueba.setNombre("Antonio");
+	 assertEquals("Antonio", equipoPrueba.getNombre()); 
+	 
+ }
+    
+ @Test
+ void setCategoria() {
+	 
+	 equipoPrueba.setCategoria("Junior");
+	 assertEquals("Junior", equipoPrueba.getCategoria()); 
+	 
+ }   
+ 
+ @Test
+ void setModalidad() {
+	 
+	 equipoPrueba.setModalidad("Tenis");
+	 assertEquals("Tenis", equipoPrueba.getModalidad()); 
+	 
+ }   
+ 
+ //Pueden existir problemas en este ya que de momento no tenemos equals de entrenador
+ //Se podría hacer con desigual
+ @Test
+ void setEntrenador() {
+	 
+	 equipoPrueba.setEntrenador(entrenadorPrueba); 
+	 assertEquals(entrenadorPrueba, equipoPrueba.getEntrenador()); 
+	 
+ }   
+ 
+ 
+
+ @Test
+ void testToStringEquipo() {
+
+	 String esperado = "Equipo [nombre=GallardoMartinez, categoria=Juvenil, modalidad=Futbol, entrenador=" +
+                       entrenadorPrueba.toString() + ", segundoEntrenador=null, jugadores=[]]";
+
+     assertEquals(esperado, equipoPrueba.toString());
+ }
+ 
+ 
 }
+ 
+    
+    
+   
+   
+   
+   
+    
+

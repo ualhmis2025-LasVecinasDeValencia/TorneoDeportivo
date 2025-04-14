@@ -15,7 +15,7 @@ class JugadorTest {
         Jugador jugador2 = new Jugador("Luis", "Masculino", LocalDate.of(2010, 3, 15));
         assertEquals("Cadete", jugador2.getCategoria());
 
-        Jugador jugador3 = new Jugador("Ana", "Femenino", LocalDate.of(2005, 8, 22));
+       Jugador jugador3 = new Jugador("Ana", "Femenino", LocalDate.of(2005, 8, 22));
         assertEquals("Juvenil", jugador3.getCategoria());
 
         Jugador jugador4 = new Jugador("Pedro", "Masculino", LocalDate.of(2002, 1, 30));
@@ -31,4 +31,5 @@ class JugadorTest {
         assertThrows(IllegalArgumentException.class, () -> new Jugador("Juan", "", LocalDate.of(2010, 1, 1)));
         assertThrows(IllegalArgumentException.class, () -> new Jugador("Juan", "Masculino", null));
     }
-}
+    
+} 
