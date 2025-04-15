@@ -7,16 +7,9 @@ public class main {
 
 	public static void main(String[] args) {
 
-	    Entrenador entrenadorPrueba = new Entrenador("Luis", "hombre", LocalDate.of(1990, 04, 05)); 
-
-	    Equipo equipoPrueba = new Equipo("GallardoMartinez", "Juvenil", "Masculino", entrenadorPrueba);
-	    Equipo equipoPrueba2 = new Equipo("Gallardo", "Juvenil", "Masculino", entrenadorPrueba);
-
 	    
         GestorTorneos gt = new GestorTorneos(); 
 
-        Torneo torneo = gt.crearTorneo("Liga Juvenil", "Fútbol", "Juvenil", "Masculino", "Liga");
-        Torneo torneo2 = gt.crearTorneo("Liga Juvenil", "Fútbol", "Juvenil", "Masculino", "Copa");
 
         boolean condicion = true; 
         
@@ -25,7 +18,7 @@ public class main {
         	
         	System.out.println("Elige una de las opciones");
         	System.out.println("1. Crear un torneo");
-            System.out.println("2. Agregar equipo a un torneo");
+            System.out.println("2. Buscar torneo");
             Scanner sc = new Scanner(System.in);  
             int decision = sc.nextInt(); 
             sc.nextLine();
@@ -53,10 +46,52 @@ public class main {
                 	System.out.println(torneo1.toString());
                 }
                 
-                System.out.println("Añada ahora equipos al torneo");
-                System.out.println("...");
-                
+             
            
+            }
+            
+            else if(decision == 2) {
+            	
+            	Torneo torneoBuscado = null; 
+            	
+            	System.out.println("Introzuca el nombre del torneo");
+                String nombre = sc.nextLine();
+                for(Torneo torneo2 : gt.getTorneos()) {
+                	
+                	if(torneo2.getNombre().equals(nombre)) {
+                		
+                		 torneoBuscado = torneo2; 
+                		break; 
+                		
+                	}
+                }
+                
+                if(torneoBuscado == null) {
+                	
+                	System.out.println("El torneo que busca no existe");
+                }
+                
+                else {
+                	
+                	System.out.println("Torneo: " + torneoBuscado.getNombre());
+                	System.out.println("Elija la opción que desea"); 
+                	System.out.println("1. Agregar Equipo");
+                    System.out.println("2. Agregar partido");
+                    int decision2 = sc.nextInt(); 
+                    
+                    if(decision2 == 1) {
+                    	
+                    	System.out.println("Agregar equipo");
+                    }
+                    
+
+                    
+                    
+                    
+                }
+                
+                
+            	
             }
 
             
@@ -75,23 +110,7 @@ public class main {
         
         
         
-        
-        boolean resultado = gt.RegistrarEquipoTorneo(equipoPrueba2, torneo); 
-        boolean resultado2 = gt.RegistrarEquipoTorneo(equipoPrueba, torneo);
-        boolean resultado3 = gt.RegistrarEquipoTorneo(equipoPrueba, torneo2); 
-        
-        System.out.println(resultado);
-        System.out.println(resultado2);
-        System.out.println(resultado3);
-
-        
-        
-        for(Torneo torneo1 : gt.getTorneos()) {
-        	
-        	System.out.println(torneo1.toString());
-        }
-        
-        
+    
 
 	    
 	    
