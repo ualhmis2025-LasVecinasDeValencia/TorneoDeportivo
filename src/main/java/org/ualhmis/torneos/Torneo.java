@@ -87,6 +87,17 @@ class Torneo {
 	           ", tipo=" + tipo +
 	           ", equipos=" + equipos + "]";
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Torneo)) return false;
+
+        Torneo torneo = (Torneo) o;
+
+        return (this.nombre==torneo.nombre && this.deporte==torneo.deporte && this.categoria==torneo.categoria && this.modalidad==torneo.modalidad && this.tipo==torneo.tipo);
+        
+    }
 
     
     
