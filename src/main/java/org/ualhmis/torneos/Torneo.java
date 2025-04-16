@@ -90,8 +90,10 @@ class Torneo {
 	
 	@Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Torneo)) return false;
+        if (this == o) 
+        	return true;
+        if (!(o instanceof Torneo)) 
+        	return false;
 
         Torneo torneo = (Torneo) o;
 

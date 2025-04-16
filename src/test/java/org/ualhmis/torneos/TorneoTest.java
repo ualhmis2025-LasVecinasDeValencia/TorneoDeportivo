@@ -3,6 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 // Registro de partidos y validación de resultados
 
@@ -139,6 +140,40 @@ class TorneoTest {
          
     }
     
+    @Test
     
+    void testTorneoToString() {
+    	
+    	String expected = "Torneo [nombre=Futbolin humano, deporte=Futbol, categoria=Juvenil, modalidad=Femenino, tipo=Liga, equipos="; 
+         
+    	Torneo torneo = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Femenino", "Liga");
+    	
+    	assertEquals(expected+"[]]",torneo.toString());
+    	
+    	Entrenador entrenador = new Entrenador("Luis", "hombre", LocalDate.of(1990, 4, 5));
+    	Equipo e1 = new Equipo("x", "Juvenil", "Femenino", entrenador);
+        Equipo e2 = new Equipo("A", "Juvenil", "Femenino", entrenador);
+        List<Equipo> lista = new ArrayList<Equipo>();
+        lista.add(e1);
+        lista.add(e2);
+        
+    	torneo.registrarEquipo(e1);
+    	torneo.registrarEquipo(e2);
+    	
+    	assertEquals(expected + lista.toString()+"]",torneo.toString());
+    }
+    
+    @Test
+    
+    void testEquals() {
+    	
+    	Torneo torneo = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Femenino", "Liga");
+    	Torneo torneo2 = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Femenino", "Liga");
+    	Torneo torneo3 = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Masculino", "Liga");
+    	assertTrue(torneo.equals(torneo));
+    	assertTrue(torneo.equals(torneo2));
+    	assertFalse(torneo.equals(torneo3));
+    	assertFalse(torneo.equals(4));
+    }
     
 }

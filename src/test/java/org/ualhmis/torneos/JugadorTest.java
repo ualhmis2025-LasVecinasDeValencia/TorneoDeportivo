@@ -32,4 +32,20 @@ class JugadorTest {
         assertThrows(IllegalArgumentException.class, () -> new Jugador("Juan", "Masculino", null));
     }
     
+    @Test
+    void testGetFechaNacimientoPersona() {
+    	LocalDate fn = LocalDate.of(2004, 06, 15);
+        Jugador jugador = new Jugador("Miguel", "Masculino", fn);
+        assertEquals(fn,jugador.getFechaNacimiento());
+    }
+    
+    @Test
+    void testGetGeneroPersona() {
+    	String genero = "Masculino";
+        Jugador jugador = new Jugador("Miguel", genero, LocalDate.of(2004, 06, 15));
+        assertEquals(genero,jugador.getGenero());
+    }
+    
+    
+    
 } 
