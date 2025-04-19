@@ -322,6 +322,35 @@ class EquipoTest {
  }
  
  
+ 
+ @Test
+ 
+ void testVinculacionConClubExistente() {
+	 
+     Entrenador entrenador = new Entrenador("Luis", "hombre", LocalDate.of(1990, 4, 5));
+     Equipo e1 = new Equipo("x", "Infantil", "Futbol", entrenador);
+
+	 Club club1 = new Club("ClubPrueba"); 
+	 
+	 
+	 assertTrue(e1.VincularEquipoClub(club1));  
+		 
+ }
+ 
+ @Test
+ 
+ void testVinculacionRepetidaConClub() {
+	 
+	 
+	 Entrenador entrenador = new Entrenador("Luis", "hombre", LocalDate.of(1990, 4, 5));
+     Equipo e1 = new Equipo("x", "Infantil", "Futbol", entrenador);
+
+	 Club club1 = new Club("ClubPrueba"); 
+	 e1.VincularEquipoClub(club1); 
+	 
+	 assertFalse(e1.VincularEquipoClub(club1)); 
+ }
+ 
 }
  
     

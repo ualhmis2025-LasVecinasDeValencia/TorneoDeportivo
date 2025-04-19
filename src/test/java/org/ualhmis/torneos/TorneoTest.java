@@ -1,6 +1,9 @@
 package org.ualhmis.torneos;
 import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
+
+import java.lang.reflect.Executable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +15,7 @@ class TorneoTest {
 
     @Test
     void testRegistrarEquipoCorrectamente() {
-        Torneo torneo = new Torneo("Liga Juvenil", "Fútbol", "Juvenil", "Masculino", "Liga");
+        Torneo torneo = new Torneo("liga Juvenil", "Fútbol", "Juvenil", "Masculino", "liga");
 
         Entrenador entrenador = new Entrenador("Carlos", "Masculino", LocalDate.of(1980, 3, 10));
         Equipo equipo = new Equipo("Tigres", "Juvenil", "Masculino", entrenador);
@@ -24,7 +27,7 @@ class TorneoTest {
 
     @Test
     void testNoRegistrarEquipoDeDiferenteCategoria() {
-        Torneo torneo = new Torneo("Liga Juvenil", "Fútbol", "Juvenil", "Masculino", "Liga");
+        Torneo torneo = new Torneo("liga Juvenil", "Fútbol", "Juvenil", "Masculino", "liga");
 
         Entrenador entrenador = new Entrenador("Carlos", "Masculino", LocalDate.of(1980, 3, 10));
         Equipo equipo = new Equipo("Tigres", "Cadete", "Masculino", entrenador);
@@ -34,7 +37,7 @@ class TorneoTest {
 
     @Test
     void testNoRegistrarEquipoDeDiferenteModalidad() {
-        Torneo torneo = new Torneo("Liga Juvenil", "Fútbol", "Juvenil", "Masculino", "Liga");
+        Torneo torneo = new Torneo("liga Juvenil", "Fútbol", "Juvenil", "Masculino", "liga");
 
         Entrenador entrenador = new Entrenador("Carlos", "Masculino", LocalDate.of(1980, 3, 10));
         Equipo equipo = new Equipo("Leonas", "Juvenil", "Femenino", entrenador);
@@ -45,12 +48,12 @@ class TorneoTest {
     
     
     
-    Torneo torneo = new Torneo("Liga Juvenil", "Fútbol", "Juvenil", "Masculino", "Liga");
+    Torneo torneo = new Torneo("liga Juvenil", "Fútbol", "Juvenil", "Masculino", "liga");
 
     @Test
     void testGetNombre() {
     	
-       assertEquals("Liga Juvenil", torneo.getNombre()); 
+       assertEquals("liga Juvenil", torneo.getNombre()); 
     }
     
     @Test
@@ -78,7 +81,7 @@ class TorneoTest {
     
     void testGetTipo() {
     	
-    	assertEquals("Liga", torneo.getTipo()); 
+    	assertEquals("liga", torneo.getTipo()); 
     }
     
     @Test
@@ -116,8 +119,8 @@ class TorneoTest {
     
     void testSetTipo() {
     	
-    	torneo.setTipo("Copa");
-        assertEquals("Copa", torneo.getTipo()); 
+    	torneo.setTipo("copa");
+        assertEquals("copa", torneo.getTipo()); 
     }
     
     @Test
@@ -144,9 +147,9 @@ class TorneoTest {
     
     void testTorneoToString() {
     	
-    	String expected = "Torneo [nombre=Futbolin humano, deporte=Futbol, categoria=Juvenil, modalidad=Femenino, tipo=Liga, equipos="; 
+    	String expected = "Torneo [nombre=Futbolin humano, deporte=Futbol, categoria=Juvenil, modalidad=Femenino, tipo=liga, equipos="; 
          
-    	Torneo torneo = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Femenino", "Liga");
+    	Torneo torneo = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Femenino", "liga");
     	
     	assertEquals(expected+"[]]",torneo.toString());
     	
@@ -167,13 +170,29 @@ class TorneoTest {
     
     void testEquals() {
     	
-    	Torneo torneo = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Femenino", "Liga");
-    	Torneo torneo2 = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Femenino", "Liga");
-    	Torneo torneo3 = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Masculino", "Liga");
+    	Torneo torneo = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Femenino", "liga");
+    	Torneo torneo2 = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Femenino", "liga");
+    	Torneo torneo3 = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Masculino", "liga");
     	assertTrue(torneo.equals(torneo));
     	assertTrue(torneo.equals(torneo2));
     	assertFalse(torneo.equals(torneo3));
     	assertFalse(torneo.equals(4));
     }
     
+    
+    @Test
+    
+    void testTorneoConDistintaModalidad() {
+    
+    
+    assertThrows(IllegalArgumentException.class, () -> new Torneo("nombre", "deporte", "categoria", "modalidad", "tipoInvalido"));
+
+    
+    
+    
 }
+
+    
+}
+
+

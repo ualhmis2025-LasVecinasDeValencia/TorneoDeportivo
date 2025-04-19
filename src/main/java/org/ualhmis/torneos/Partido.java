@@ -4,6 +4,8 @@ class Partido {
     private Equipo equipo2;
     private int golesEquipo1;
     private int golesEquipo2;
+    private Equipo ganador; 
+    
 
     public Partido(Equipo equipo1, Equipo equipo2) {
         this.equipo1 = equipo1;

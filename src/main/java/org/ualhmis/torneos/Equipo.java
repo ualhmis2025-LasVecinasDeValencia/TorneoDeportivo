@@ -10,6 +10,7 @@ class Equipo {
     private Entrenador entrenador;
     private Entrenador segundoEntrenador;
     private List<Jugador> jugadores;
+    private Club club; 
 
     public Equipo(String nombre, String categoria, String modalidad, Entrenador entrenador) {
         if (nombre == null || nombre.trim().isEmpty()) {
@@ -131,6 +132,16 @@ class Equipo {
 
     public void asignarSegundoEntrenador(Entrenador entrenador) {
         this.segundoEntrenador = entrenador;
+    }
+    
+    
+    //¿Este método se prueba aquí o en la clase club, o en las dos? 
+    
+    public boolean VincularEquipoClub(Club club) {
+    	
+    	boolean resultado =club.AñadirEquipoClub(this); 
+    	return resultado; 
+    	
     }
     
     

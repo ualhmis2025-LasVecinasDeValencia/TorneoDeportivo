@@ -33,4 +33,7 @@ class GestorTorneosTest {
 		assertFalse(GT.RegistrarEquipoTorneo(equipo, GT.getTorneos().getLast()));
 		
 	}
+	
+	
+	
 }

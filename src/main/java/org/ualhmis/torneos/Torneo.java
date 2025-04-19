@@ -10,14 +10,30 @@ class Torneo {
     private String modalidad;
     private List<Equipo> equipos;
     private String tipo;
+    private ArrayList<Partido> partidos; 
+    private Equipo GanadorTorneo; 
+    private Sede sede; 
 
     public Torneo(String nombre, String deporte, String categoria, String modalidad, String tipo) {
         this.nombre = nombre;
         this.deporte = deporte;
         this.categoria = categoria;
         this.modalidad = modalidad;
-        this.tipo = tipo;
+        
+        //En el main se podría poner .toLowerCase. (Además de avisar cuales son los tipos correctos)
+        if(tipo != "copa" && tipo != "liga") {
+            throw new IllegalArgumentException("El tipo de torneo no es válido"); 
+        }
+        else {
+        	
+            this.tipo = tipo;
+
+        }
         this.equipos = new ArrayList<>();
+        
+        
+        
+        
     }
 
     public void registrarEquipo(Equipo equipo) {
@@ -100,6 +116,36 @@ class Torneo {
         return (this.nombre==torneo.nombre && this.deporte==torneo.deporte && this.categoria==torneo.categoria && this.modalidad==torneo.modalidad && this.tipo==torneo.tipo);
         
     }
+	
+	
+	public Partido registrarPartidos(Partido partido){
+		
+		//Precondición: 
+
+		if(this.equipos.contains(partido.getEquipo1()) == false || this.equipos.contains(partido.getEquipo2()) == false) {
+			
+			return null; 
+		}
+		this.partidos.add(partido); 
+	    
+		
+		return partido; 
+		
+		
+	}
+	
+	public boolean registrarGanador(Equipo equipo) {
+		
+		
+		if (this.equipos.contains(equipo) == false) return false; 
+		
+		this.GanadorTorneo = equipo; 
+		return true; 
+		
+		
+	}
+	
+	
 
     
     
