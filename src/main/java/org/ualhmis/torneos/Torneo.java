@@ -19,9 +19,10 @@ class Torneo {
         this.deporte = deporte;
         this.categoria = categoria;
         this.modalidad = modalidad;
+        this.partidos = new ArrayList<Partido>(); 
         
         //En el main se podría poner .toLowerCase. (Además de avisar cuales son los tipos correctos)
-        if(tipo != "copa" && tipo != "liga") {
+        if(tipo.equals("copa") == false && tipo.equals("liga") == false) {
             throw new IllegalArgumentException("El tipo de torneo no es válido"); 
         }
         else {
@@ -148,17 +149,22 @@ class Torneo {
 	
 	//El usuario debe elegir la instalacion que es adecuada según el deporte del torneo. 
 	
-	public boolean vincularSede(Sede sede, Instalacion instalacion) {
+	public boolean vincularSede(Sede sede) {
 		
 	     //Precondicion: 
 		
-		if(sede.getInstalaciones().contains(instalacion) == false) return false; 
+		for(Instalacion instalacion  : sede.getInstalaciones()) {
+			
+			if(instalacion.getDeportes().contains(deporte)) {
+				
+				this.sede  = sede; 
+				return true;
+				
+				
+			}
+		}
 		
-		this.sede = sede; 
-		
-		
-		return true; 
-
+		return false; 
 	}
 	
 	

@@ -2,6 +2,8 @@ package org.ualhmis.torneos;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.lang.reflect.Executable;
 import java.time.LocalDate;
@@ -187,10 +189,102 @@ class TorneoTest {
     
     assertThrows(IllegalArgumentException.class, () -> new Torneo("nombre", "deporte", "categoria", "modalidad", "tipoInvalido"));
 
-    
-    
-    
 }
+    
+    
+    @ParameterizedTest
+    @CsvSource({
+    	
+    	// nombre, deporte, categoria, modalidad, tipo, resultadoEsperado
+    	
+    	
+        "Copa Futsal, Futbol Sala, Juvenil, Masculino,copa, true",
+        "Liga Escolar, Baloncesto, Infantil, Femenino,liga, true",
+        "Copa Primavera, Gimnasia Rítmica, Cadete, Femenino,copa, false",
+        "Torneo Rápido, Ajedrez, Senior, Mixto,liga, false",
+        "Copa Verano, Rugby, Juvenil, Masculino,copa, false"    	
+    	
+    	
+    	
+    	
+    })
+    
+    void testVinculacionDeTorneoConSede(String nombre, String deporte, String categoria, String modalidad, String tipo, Boolean resultadoEsperado) {
+    	
+    	
+    	//Arrange
+    	Torneo torneo = new Torneo(nombre, deporte, categoria, modalidad, tipo); 
+     
+    	Pista pistaSede = new Pista("Pista1", "Baloncesto", "Futbol Sala");
+    	Pabellon pabellonSede = new Pabellon("Pabellon1", "Gimnasia", "VoleyComba"); 
+    
+    	Sede sede = new Sede("RafaelFlorido", pistaSede, pabellonSede ); 
+    	
+    	//Act
+    	
+    	boolean resultado0 = torneo.vincularSede(sede); 
+    	
+    	
+    	//Assert 
+    	
+    	assertEquals(resultadoEsperado, resultado0); 
+    	
+    		
+    }
+    
+    
+    @Test 
+    
+    void testRegistrarPartidosTorneo() {
+    	
+    	
+    	Torneo torneo = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Femenino", "liga");
+
+    	Entrenador entrenador = new Entrenador("Luis", "hombre", LocalDate.of(1990, 4, 5));
+    	Equipo e1 = new Equipo("x", "Juvenil", "Femenino", entrenador);
+        Equipo e2 = new Equipo("A", "Juvenil", "Femenino", entrenador);
+        Partido partido1 = new Partido(e1, e2); 
+        torneo.registrarEquipo(e1);
+        torneo.registrarEquipo(e2);
+        
+        Partido resultado = torneo.registrarPartidos(partido1); 
+        
+        assertEquals(partido1, resultado); 
+
+        
+    }
+    
+    
+ @Test 
+    
+    void testRegistrarTorneoFallido() {
+    	
+    	
+    	Torneo torneo = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Femenino", "liga");
+
+    	Entrenador entrenador = new Entrenador("Luis", "hombre", LocalDate.of(1990, 4, 5));
+    	Equipo e1 = new Equipo("x", "Juvenil", "Femenino", entrenador);
+        Equipo e2 = new Equipo("A", "Juvenil", "Femenino", entrenador);
+        Partido partido1 = new Partido(e1, e2); 
+        torneo.registrarEquipo(e1);
+     
+        
+        Partido resultado = torneo.registrarPartidos(partido1); 
+        
+        assertEquals(null, resultado); 
+
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     
 }
