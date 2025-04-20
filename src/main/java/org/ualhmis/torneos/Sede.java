@@ -12,6 +12,8 @@ public class Sede {
    
    public Sede(String nombre, Instalacion... instalaciones) {
 	   this.nombre=nombre;
+	   
+	   this.instalaciones = new ArrayList<Instalacion>(); 
 	   for(Instalacion instalacion : instalaciones) {
 		   this.instalaciones.add(instalacion);
 	   }

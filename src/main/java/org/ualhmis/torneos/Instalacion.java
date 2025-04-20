@@ -7,6 +7,9 @@ import java.util.TreeMap;
 abstract class  Instalacion {
 
     private TreeMap<String, Boolean> horario;
+    private String nombre;
+    private HashSet<String> deportes;
+    
 
 //    public Instalacion() {
 //        this.horario = new TreeMap<>();
@@ -24,6 +27,15 @@ abstract class  Instalacion {
     }
 
     public boolean asignarPartido(Partido partido, String franjaHoraria) {
+    	
+    	//Precondiciones
+    	
+    	if(this.deportes.contains(partido.getDeporte()) == false) {
+    		
+    		return false; 
+    	}
+    	
+    	
         if (!horario.containsKey(franjaHoraria)) {
             System.out.println("Franja no válida: " + franjaHoraria);
             return false;
@@ -49,11 +61,10 @@ abstract class  Instalacion {
     //
     //
     //
-    private String nombre;
-    private HashSet<String> deportes;
-    
+  
     public Instalacion(String nombre, String... deportes) {
       this.nombre=nombre;
+      this.deportes = new HashSet<String>(); 
       for(String deporte : deportes) {
   		this.deportes.add(deporte);
   	}

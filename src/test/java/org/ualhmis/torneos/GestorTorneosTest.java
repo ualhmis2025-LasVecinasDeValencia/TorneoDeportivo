@@ -15,8 +15,8 @@ class GestorTorneosTest {
 		GestorTorneos GT = new GestorTorneos();
 		List<Torneo> torneos = new ArrayList<>();
 
-		GT.crearTorneo("PádelExtreme", "Pádel", "Juvenil", "Masculino", "Liga");
-		torneos.add(new Torneo("PádelExtreme", "Pádel", "Juvenil", "Masculino", "Liga"));
+		GT.crearTorneo("PádelExtreme", "Pádel", "Juvenil", "Masculino", "liga");
+		torneos.add(new Torneo("PádelExtreme", "Pádel", "Juvenil", "Masculino", "liga"));
 		assertEquals(GT.getTorneos(), torneos);
 	}
 
@@ -24,8 +24,8 @@ class GestorTorneosTest {
 	void testRegistrarEquipoTorneo() {
 		GestorTorneos GT = new GestorTorneos();
 
-		GT.crearTorneo("PádelExtreme", "Pádel", "Juvenil", "Masculino", "Liga");
-		GT.crearTorneo("King Pon", "Tenis de mesa", "Juvenil", "Masculino", "Liga");
+		GT.crearTorneo("PádelExtreme", "Pádel", "Juvenil", "Masculino", "liga");
+		GT.crearTorneo("King Pon", "Tenis de mesa", "Juvenil", "Masculino", "liga");
 
 		Entrenador entrenador = new Entrenador("Leopoldo","Masculino",LocalDate.of(1990, 04, 16));
 		Equipo equipo= new Equipo("VdV","Juvenil","Masculino",entrenador);
