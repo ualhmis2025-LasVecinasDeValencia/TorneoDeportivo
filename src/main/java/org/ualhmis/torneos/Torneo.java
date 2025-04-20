@@ -146,6 +146,23 @@ class Torneo {
 	}
 	
 	
+	public boolean vincularSede(Sede sede, Instalacion instalacion) {
+		
+		//Precondicion: 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
 
     
     
