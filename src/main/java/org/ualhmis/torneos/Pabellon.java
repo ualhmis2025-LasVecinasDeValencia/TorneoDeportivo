@@ -6,3 +6,4 @@ public class Pabellon extends Instalacion {
 	}
 
 
+
