@@ -21,12 +21,12 @@ public class Sede {
 	   instalaciones.add(instalacion);
    }
    
-   public void AgregarReserva(Instalacion instalacion,LocalDateTime horaInicio,LocalDateTime horaFin,Partido partido) {
+   public void AgregarReserva(Instalacion instalacion,LocalDateTime horaInicio,LocalDateTime horaFin,Partido partido) throws ReservaException {
 	   
 	   for(Reserva reserva : reservas) {
 		   if((reserva.getHorarioInicio().isBefore(horaInicio) && horaInicio.isBefore(reserva.getHorarioFin())) || (reserva.getHorarioInicio().isAfter(horaInicio) && horaFin.isAfter(reserva.getHorarioInicio()))) {
 			   if(reserva.getInstalacion().equals(instalacion)) {
-				   //Aquí habria que devolver error
+				   throw new ReservaException("Ya existe una reserva en ese lugar y hora.");
 			   }
 		   }
 		   
