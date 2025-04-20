@@ -8,7 +8,9 @@ public class Sede {
    private String nombre; 
    private ArrayList<Instalacion> instalaciones; 
    
-  public Sede(String nombre) {
+ 
+
+public Sede(String nombre) {
 	  
 	  this.nombre = nombre; 
 	  this.instalaciones = new ArrayList<Instalacion>();
@@ -22,7 +24,15 @@ public class Sede {
 	   
    }
    
-	
+
+   public ArrayList<Instalacion> getInstalaciones() {
+ 	return instalaciones;
+ }
+
+
+ public void setInstalaciones(ArrayList<Instalacion> instalaciones) {
+ 	this.instalaciones = instalaciones;
+ }
 	
 	
 
