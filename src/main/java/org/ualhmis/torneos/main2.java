@@ -13,7 +13,7 @@ public class main2 {
 	     Equipo equipo2 = new Equipo("Leones", "Juvenil", "Masculino", entrenador);
 
 		
-		Campo inst = new Campo(); 
+		Campo inst = new Campo("Campo"); 
 	
 		Partido p = new Partido(equipo, equipo2);
 		

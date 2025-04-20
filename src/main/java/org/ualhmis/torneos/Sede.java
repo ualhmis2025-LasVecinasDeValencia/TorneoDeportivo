@@ -22,7 +22,7 @@ public class Sede {
    }
    
    public void AgregarReserva(Instalacion instalacion,LocalDateTime horaInicio,LocalDateTime horaFin,Partido partido) throws ReservaException {
-	   
+	   if(!instalacion.comprobarDeporte(partido.getDeporte())) throw new ReservaException("No se puede realizar un partido de " +partido.getDeporte() + " en esta instalación.");
 	   for(Reserva reserva : reservas) {
 		   if((reserva.getHorarioInicio().isBefore(horaInicio) && horaInicio.isBefore(reserva.getHorarioFin())) || (reserva.getHorarioInicio().isAfter(horaInicio) && horaFin.isAfter(reserva.getHorarioInicio()))) {
 			   if(reserva.getInstalacion().equals(instalacion)) {

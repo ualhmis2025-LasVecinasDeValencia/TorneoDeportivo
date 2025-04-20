@@ -1,5 +1,6 @@
 package org.ualhmis.torneos;
 class Partido {
+	private String deporte;
     private Equipo equipo1;
     private Equipo equipo2;
     private int golesEquipo1;
@@ -47,6 +48,14 @@ class Partido {
 
 	public void setGolesEquipo2(int golesEquipo2) {
 		this.golesEquipo2 = golesEquipo2;
+	}
+
+	public String getDeporte() {
+		return deporte;
+	}
+
+	public void setDeporte(String deporte) {
+		this.deporte = deporte;
 	}
     
     
