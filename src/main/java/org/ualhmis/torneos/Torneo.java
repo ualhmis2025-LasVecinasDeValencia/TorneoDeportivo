@@ -146,6 +146,21 @@ class Torneo {
 	}
 	
 	
+	//El usuario debe elegir la instalacion que es adecuada según el deporte del torneo. 
+	
+	public boolean vincularSede(Sede sede, Instalacion instalacion) {
+		
+	     //Precondicion: 
+		
+		if(sede.getInstalaciones().contains(instalacion) == false) return false; 
+		
+		this.sede = sede; 
+		
+		return true; 
+
+	}
+	
+	
 
     
     

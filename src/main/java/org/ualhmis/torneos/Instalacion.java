@@ -1,18 +1,50 @@
 package org.ualhmis.torneos;
 
-import java.util.HashSet;
+import java.time.LocalTime;
+import java.util.TreeMap;
 
 public class Instalacion {
 
-	String nombre;
-	HashSet<String> deportesPermitidos;
-	
-	@Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false; 
+    private TreeMap<String, Boolean> horario;
 
-        Instalacion otra = (Instalacion) obj;
-        return nombre != null ? nombre.equals(otra.nombre) : otra.nombre == null;
+    public Instalacion() {
+        this.horario = new TreeMap<>();
+        establecerFranjas(LocalTime.of(8, 0), LocalTime.of(22, 0)); 
+    }
+
+    public void establecerFranjas(LocalTime inicio, LocalTime fin) {
+        horario.clear();
+        while (inicio.isBefore(fin)) {
+            LocalTime siguiente = inicio.plusMinutes(30);
+            String franja = inicio + "-" + siguiente;
+            horario.put(franja, true);
+            inicio = siguiente;
+        }
+    }
+
+    public boolean asignarPartido(Partido partido, String franjaHoraria) {
+        if (!horario.containsKey(franjaHoraria)) {
+            System.out.println("Franja no válida: " + franjaHoraria);
+            return false;
+        }
+
+        if (horario.get(franjaHoraria)) {
+            horario.put(franjaHoraria, false); 
+            System.out.println("Partido asignado en la franja: " + franjaHoraria);
+            return true;
+        } else {
+            System.out.println("Franja ocupada: " + franjaHoraria);
+            return false;
+        }
+    }
+
+    public void mostrarHorario() {
+        for (String franja : horario.keySet()) {
+            System.out.println(franja + " → " + (horario.get(franja) ? "Libre" : "Ocupada"));
+        }
     }
 }
+
+    
+    
+

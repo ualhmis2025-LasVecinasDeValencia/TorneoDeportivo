@@ -36,7 +36,31 @@ public class Sede {
 	   
    }
    
-	
+ 
+
+public Sede(String nombre) {
+	  
+	  this.nombre = nombre; 
+	  this.instalaciones = new ArrayList<Instalacion>();
+	  
+  }
+  
+  
+   public boolean AñadirInstalacion(Instalacion instalacion) {
+	   
+	   return this.instalaciones.add(instalacion); 
+	   
+   }
+   
+
+   public ArrayList<Instalacion> getInstalaciones() {
+ 	return instalaciones;
+ }
+
+
+ public void setInstalaciones(ArrayList<Instalacion> instalaciones) {
+ 	this.instalaciones = instalaciones;
+ }
 	
 	
 
