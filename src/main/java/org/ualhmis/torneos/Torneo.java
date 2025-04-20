@@ -156,6 +156,7 @@ class Torneo {
 		
 		this.sede = sede; 
 		
+		
 		return true; 
 
 	}
