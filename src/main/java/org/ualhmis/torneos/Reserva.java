@@ -7,13 +7,11 @@ public class Reserva {
 	private Partido partido;
 	private LocalDateTime horarioInicio;
 	private LocalDateTime horarioFin;
-	private Instalacion instalacion;
 	
-	public Reserva(Partido partido, LocalDateTime horarioInicio,LocalDateTime horarioFin, Instalacion instalacion) {
+	public Reserva(Partido partido, LocalDateTime horarioInicio,LocalDateTime horarioFin) {
 		this.partido=partido;
 		this.horarioInicio=horarioInicio;
 		this.horarioFin=horarioFin;
-		this.instalacion=instalacion;
 	}
 
 	public Partido getPartido() {
@@ -40,12 +38,5 @@ public class Reserva {
 		this.horarioFin = horarioFin;
 	}
 
-	public Instalacion getInstalacion() {
-		return instalacion;
-	}
-
-	public void setInstalacion(Instalacion instalacion) {
-		this.instalacion = instalacion;
-	}
 	
 }

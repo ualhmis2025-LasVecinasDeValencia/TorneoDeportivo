@@ -17,12 +17,14 @@ public class main2 {
 	
 		Partido p = new Partido(equipo, equipo2);
 		
+		/*
 		inst.mostrarHorario();
 
 		inst.asignarPartido(p, "10:00-10:30");
 
 		inst.mostrarHorario();
 
+		*/
 		
 		
 		
