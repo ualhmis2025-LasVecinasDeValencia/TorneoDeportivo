@@ -1,6 +1,8 @@
 package org.ualhmis.torneos;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.TreeMap;
 
@@ -9,6 +11,7 @@ abstract class  Instalacion {
     private TreeMap<String, Boolean> horario;
     private String nombre;
     private HashSet<String> deportes;
+    private ArrayList<Reserva> reservas;
     
 
 //    public Instalacion() {
@@ -16,45 +19,18 @@ abstract class  Instalacion {
 //        establecerFranjas(LocalTime.of(8, 0), LocalTime.of(22, 0)); 
 //    }
 
-    public void establecerFranjas(LocalTime inicio, LocalTime fin) {
-        horario.clear();
-        while (inicio.isBefore(fin)) {
-            LocalTime siguiente = inicio.plusMinutes(30);
-            String franja = inicio + "-" + siguiente;
-            horario.put(franja, true);
-            inicio = siguiente;
-        }
-    }
-
-    public boolean asignarPartido(Partido partido, String franjaHoraria) {
-    	
-    	//Precondiciones
-    	
-    	if(this.deportes.contains(partido.getDeporte()) == false) {
-    		
-    		return false; 
-    	}
-    	
-    	
-        if (!horario.containsKey(franjaHoraria)) {
-            System.out.println("Franja no válida: " + franjaHoraria);
-            return false;
-        }
-
-        if (horario.get(franjaHoraria)) {
-            horario.put(franjaHoraria, false); 
-            System.out.println("Partido asignado en la franja: " + franjaHoraria);
-            return true;
-        } else {
-            System.out.println("Franja ocupada: " + franjaHoraria);
-            return false;
-        }
-    }
-
-    public void mostrarHorario() {
-        for (String franja : horario.keySet()) {
-            System.out.println(franja + " → " + (horario.get(franja) ? "Libre" : "Ocupada"));
-        }
+   
+    public void AgregarReserva(LocalDateTime horaInicio,LocalDateTime horaFin,Partido partido) throws ReservaException {
+ 	   if(!this.comprobarDeporte(partido.getDeporte())) throw new ReservaException("No se puede realizar un partido de " +partido.getDeporte() + " en esta instalación.");
+ 	   for(Reserva reserva : reservas) {
+ 		   if((reserva.getHorarioInicio().isBefore(horaInicio) && horaInicio.isBefore(reserva.getHorarioFin())) || (reserva.getHorarioInicio().isAfter(horaInicio) && horaFin.isAfter(reserva.getHorarioInicio()))) {
+ 			  throw new ReservaException("Ya existe una reserva en esta instalación a esa hora");
+ 		   }
+ 		   
+ 	   }
+ 	   Reserva reserva = new Reserva(partido,horaInicio,horaFin);
+ 	   reservas.add(reserva);
+ 	   
     }
     
     //
@@ -72,6 +48,7 @@ abstract class  Instalacion {
     
     public void agregarDeporte(String... deportes) {
     	for(String deporte : deportes) {
+    		if(comprobarDeporte(deporte)) continue; //Aquí he hecho que no devuelva error si algun deporte se repita, simplemente que siga.
     		this.deportes.add(deporte);
     	}
     }
@@ -95,9 +72,6 @@ abstract class  Instalacion {
 	public void setDeportes(HashSet<String> deportes) {
 		this.deportes = deportes;
 	}
-
-	
-    
     
 }
 
