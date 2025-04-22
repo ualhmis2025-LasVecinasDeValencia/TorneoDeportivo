@@ -166,6 +166,13 @@ class Torneo {
 		
 		return false; 
 	}
+
+	public Equipo getGanadorTorneo() {
+		return GanadorTorneo;
+	}
+
+	
+	
 	
 	
 

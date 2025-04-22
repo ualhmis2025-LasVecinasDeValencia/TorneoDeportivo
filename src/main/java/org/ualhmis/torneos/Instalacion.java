@@ -20,6 +20,7 @@ abstract class  Instalacion {
 //    }
 
    
+    //La instalación seguramente no esté abierta las 24h (o sí)
     public void AgregarReserva(LocalDateTime horaInicio,LocalDateTime horaFin,Partido partido) throws ReservaException {
  	   if(!this.comprobarDeporte(partido.getDeporte())) throw new ReservaException("No se puede realizar un partido de " +partido.getDeporte() + " en esta instalación.");
  	   for(Reserva reserva : reservas) {
@@ -44,6 +45,8 @@ abstract class  Instalacion {
       for(String deporte : deportes) {
   		this.deportes.add(deporte);
   	}
+      
+      this.reservas = new ArrayList<Reserva>(); 
   }
     
     public void agregarDeporte(String... deportes) {
@@ -72,6 +75,15 @@ abstract class  Instalacion {
 	public void setDeportes(HashSet<String> deportes) {
 		this.deportes = deportes;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj) return true;
+	    if (obj == null || getClass() != obj.getClass()) return false;
+	    Instalacion that = (Instalacion) obj;
+	    return nombre.equalsIgnoreCase(that.nombre); // usa solo el nombre como clave
+	}
+
     
 }
 

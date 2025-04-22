@@ -18,11 +18,6 @@ public class Sede {
 	   }
    }
    
-   public void AgregarInstalacion(Instalacion instalacion) {
-	   instalaciones.add(instalacion);
-   }
-   
- 
 
 //public Sede(String nombre) {
 //	  

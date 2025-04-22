@@ -275,6 +275,43 @@ class TorneoTest {
 
         
     }
+ 
+ 
+ @Test
+ 
+  void testRegistrarGanador() {
+	 
+	 Entrenador entrenador = new Entrenador("Luis", "hombre", LocalDate.of(1990, 4, 5));
+ 	 Equipo e1 = new Equipo("x", "Juvenil", "Femenino", entrenador);
+ 	 Torneo torneo = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Femenino", "liga");
+ 	 torneo.registrarEquipo(e1);
+ 	 torneo.registrarGanador(e1); 
+ 	 
+ 	 assertEquals(e1, torneo.getGanadorTorneo()); 
+ 	 
+	 
+ }
+ 
+ 
+ @Test
+ void testRegistrarGanadorQueNoParticipaEnElTorneo() {
+	 
+	 Entrenador entrenador = new Entrenador("Luis", "hombre", LocalDate.of(1990, 4, 5));
+ 	 Equipo e1 = new Equipo("x", "Juvenil", "Femenino", entrenador);
+ 	 Torneo torneo = new Torneo("Futbolin humano", "Futbol", "Juvenil", "Femenino", "liga");
+ 	 torneo.registrarGanador(e1); 
+ 	 
+ 	 assertNotEquals(e1, torneo.getGanadorTorneo()); 
+	 
+	 
+	 
+ }
+
+ 
+ 
+ 
+
+ 
     
     
     

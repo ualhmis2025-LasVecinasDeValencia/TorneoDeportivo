@@ -8,6 +8,7 @@ public class Reserva {
 	private LocalDateTime horarioInicio;
 	private LocalDateTime horarioFin;
 	
+	
 	public Reserva(Partido partido, LocalDateTime horarioInicio,LocalDateTime horarioFin) {
 		this.partido=partido;
 		this.horarioInicio=horarioInicio;
