@@ -23,8 +23,11 @@ abstract class  Instalacion {
     //La instalación seguramente no esté abierta las 24h (o sí)
     public void AgregarReserva(LocalDateTime horaInicio,LocalDateTime horaFin,Partido partido) throws ReservaException {
  	   if(!this.comprobarDeporte(partido.getDeporte())) throw new ReservaException("No se puede realizar un partido de " +partido.getDeporte() + " en esta instalación.");
+ 	   
  	   for(Reserva reserva : reservas) {
- 		   if((reserva.getHorarioInicio().isBefore(horaInicio) && horaInicio.isBefore(reserva.getHorarioFin())) || (reserva.getHorarioInicio().isAfter(horaInicio) && horaFin.isAfter(reserva.getHorarioInicio()))) {
+ 		  
+ 		  // if((reserva.getHorarioInicio().compareTo(horaInicio)==0) || (reserva.getHorarioFin().compareTo(horaFin)==0) ||(reserva.getHorarioInicio().isBefore(horaInicio) && horaInicio.isBefore(reserva.getHorarioFin())) || (reserva.getHorarioInicio().isAfter(horaInicio) && horaFin.isAfter(reserva.getHorarioInicio()))) {
+ 		   if(!(horaFin.compareTo(reserva.getHorarioInicio()) <= 0 || horaInicio.compareTo(reserva.getHorarioFin()) >= 0)) {
  			  throw new ReservaException("Ya existe una reserva en esta instalación a esa hora");
  		   }
  		   
