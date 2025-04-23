@@ -16,6 +16,7 @@ public class Reserva {
 	}
 
 	public Partido getPartido() {
+
 		return partido;
 	}
 
