@@ -7,7 +7,7 @@ public class Club {
 	//Atributos: 
 	
    private String nombre; 
-   private ArrayList<Equipo> listaEquipos; 
+   private ArrayList<Equipo>  listaEquipos; 
    
    public Club (String nombre, ArrayList<Equipo> listaEquipos) {
 	   
