@@ -78,7 +78,7 @@
 		<artifactId>maven-javadoc-plugin</artifactId>
 		<version>3.5.0</version>
 		<configuration>
-			<show>private</show>
+			<show>public</show>
 			
           <!-- <reportOutputDirectory>
 		  	${project.reporting.outputDirectory}/../../docs
@@ -92,7 +92,7 @@
           <additionalOptions>
 			<!-- <additionalOption>-umlImageFormat svg_img,png</additionalOption> -->
 			<additionalOption>-umlImageFormat svg_img</additionalOption>
-			<additionalOption>-private</additionalOption>
+			<additionalOption>-public</additionalOption>
 			<!-- <additionalOption>-createPumlFiles</additionalOption> -->
 			<additionalOption>-umlExcludedTypeReferences</additionalOption> <!-- añade metodos toString() y equals() -->
           </additionalOptions>
